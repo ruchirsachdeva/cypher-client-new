@@ -1,0 +1,43 @@
+<div class="dashboard" *ngIf="account.user">
+
+	<div class="dashboardheader">
+		<div class="dashboard-heading">Dashboard</div>
+		<div class="profile-card__name">{{ account.user.firstName }} {{ account.user.lastName }}</div>
+	</div>
+	<ul class="dashboardlinks">
+		<li><a routerLink="/account/dashboard"><i class="fa fa-plus"></i>{{ 'TEXT_ADD_NEW'|translate }}</a></li>
+		<li><a routerLink="/account/active">{{ 'TEXT_ACTIVE'|translate }}</a></li>
+		<li><a routerLink="/account/pending"   class="active">{{ 'TEXT_PENDING'|translate }}</a></li>
+		<li><a routerLink="/account/history">{{ 'TEXT_HISTORY'|translate }}</a></li>
+		<li><a routerLink="/account/mostwanted">{{ 'TEXT_MOSTWANTED'|translate }}</a></li>
+		<li><a routerLink="/account/settings">{{ 'TEXT_SETTINGS'|translate }}</a></li>
+		
+	</ul>
+	
+	
+	<div class="dashboardcontent">
+		<div class="row row-eq-height">
+			<div class="col-md-3" *ngFor="let p of pendingProducts">
+				<div class="activeproductbox">
+					<div class="activeproductimage">
+						<img src="assets/images/products/product-2-1.png">
+					</div>
+					<div class="activeproductstatussold">
+						{{ p.name |translate }}
+					</div>
+				</div>
+			</div>
+			
+			<div class="col-md-3">
+			</div>
+		</div>
+	</div>
+	
+	
+	
+	
+	
+
+
+    
+</div>

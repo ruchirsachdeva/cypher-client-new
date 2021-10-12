@@ -1,0 +1,36 @@
+
+    <div class="profile-header">
+        <ul>
+			<li><a routerLink="/account/profile">Buyer Info</a></li>
+			<li class="profilesecondli"><a routerLink="/account/seller" class="active">Seller Info</a></li>
+		</ul>
+    </div>
+    <div class="profile-body">
+		<div class="row" *ngIf="msgShown">
+			<div class="col-12 col-lg-5 col-xl-5">
+				<div class="alert alert-success">
+					{{msgShown}}
+				</div>
+			</div>
+		</div>
+        <div class="row no-gutters" *ngIf="showHTML">
+            <div class="col-12 col-lg-5 col-xl-5" [formGroup]="form">
+                
+				<app-address-form  [form]="form"></app-address-form>
+				
+				
+				
+                <div class="form-group mb-0">
+                    <button
+                        class="btn btn-primary mt-3"
+                        [class.btn-loading]="saveInProgress"
+                        (click)="save()"
+                    >
+                        Save
+                    </button>
+                </div>
+
+               
+            </div>
+        </div>
+    </div>

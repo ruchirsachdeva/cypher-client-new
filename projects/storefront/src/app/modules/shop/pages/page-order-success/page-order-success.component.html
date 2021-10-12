@@ -1,0 +1,65 @@
+<div class="block order-success">
+    <div class="container">
+        <div class="order-success__body">
+            <div class="order-success__header">
+                <h1 class="order-success__title">{{ 'HEADER_ORDER_SUCCESS_TITLE'|translate }}. {{ 'HEADER_ORDER_SUCCESS_SUBTITLE'|translate }}.</h1>
+            </div>
+
+            <div class="order-success__meta order-success__meta1">
+                <ul class="order-success__meta-list">
+                    <li class="order-success__meta-item">
+                        <span class="order-success__meta-title">{{ 'TEXT_ORDER_NUMBER'|translate }}:</span>
+                        <span class="order-success__meta-value">
+                            {{ 'FORMAT_ORDER_NUMBER'|translate:{number: order.number} }}
+                        </span>
+                    </li>
+                    <li class="order-success__meta-item">
+                        <span class="order-success__meta-title">Date:</span>
+                        <span class="order-success__meta-value">{{ 'FORMAT_DATE_MEDIUM'|translate:{date: order.createdAt} }}</span>
+                    </li>
+                    <li class="order-success__meta-item">
+                        <span class="order-success__meta-title">{{ 'TEXT_TOTAL'|translate }}:</span>
+                        <span class="order-success__meta-value">{{ order.total|currencyFormat }}</span>
+                    </li>
+                    <li class="order-success__meta-item">
+                        <span class="order-success__meta-title">{{ 'TEXT_PAYMENT_METHOD'|translate }}:</span>
+                        <span class="order-success__meta-value">{{ order.payment }}</span>
+                    </li>
+                </ul>
+            </div>
+			
+			<div class="order-success__meta">
+				<h3>Order Details</h3>
+                <ul class="order-success__meta-list">
+                    <li class="order-success__meta-item" *ngFor="let item of order.items">
+                        <span class="order-success__meta-title">{{ 'TABLE_PRODUCT'|translate }}:</span>
+                        <span class="order-success__meta-value">
+                            {{ item.product.name }}
+                        </span>
+                    </li>
+                    <li class="order-success__meta-item" *ngIf="order.totals?.length > 0">
+                        <span class="order-success__meta-title">{{ 'TABLE_SUBTOTAL'|translate }}</span>
+                        <span class="order-success__meta-value">{{ order.subtotal|currencyFormat }}</span>
+                    </li>
+					<li class="order-success__meta-item" *ngFor="let total of order.totals">
+                        <span class="order-success__meta-title">{{ 'TABLE_TOTAL_' + total.title|translate }}</span>
+                        <span class="order-success__meta-value">{{ total.price|currencyFormat }}</span>
+                    </li>
+                    <li class="order-success__meta-item">
+                        <span class="order-success__meta-title">{{ 'TEXT_PAYMENT_METHOD'|translate }}:</span>
+                        <span class="order-success__meta-value">{{ order.payment }}</span>
+                    </li>
+					<li class="order-success__meta-item">
+                        <span class="order-success__meta-title">{{ 'TEXT_TOTAL'|translate }}:</span>
+                        <span class="order-success__meta-value">{{ order.total|currencyFormat }}</span>
+                    </li>
+                    
+                </ul>
+            </div>
+
+           
+        </div>
+    </div>
+</div>
+
+<app-block-space layout="before-footer"></app-block-space>

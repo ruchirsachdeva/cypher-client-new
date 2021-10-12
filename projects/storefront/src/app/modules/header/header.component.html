@@ -1,0 +1,30 @@
+<div  id="stickyheader" >
+	<div class="header">
+	   
+		
+		<app-logo class="header__logo"></app-logo>
+
+		<ng-autocomplete
+		[data]="approvedProduct" 
+		[searchKeyword]="keyword"
+		[placeholder]="'INPUT_SKU_PLACEHOLDER'|translate"
+		(selected)='selectEvent($event)'
+		(inputChanged)='onChangeSearch($event)'
+		[itemTemplate]="itemTemplate"
+		[debounceTime]=1000
+		>
+	  </ng-autocomplete>
+	
+	  <ng-template #itemTemplate let-item>
+		<a [innerHTML]="item.name"></a>
+	  </ng-template>
+
+
+
+		<div class="header__indicators">
+				<button type="button" class="app-indicator__button">
+					<span class="app-indicator__icon"><app-icon icon="search-20"></app-icon></span>
+				</button>
+		</div>
+	</div>
+</div>

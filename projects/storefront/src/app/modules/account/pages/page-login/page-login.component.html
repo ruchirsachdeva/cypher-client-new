@@ -1,0 +1,76 @@
+
+<div class="block"> 
+    <div class="">
+        <div class="row">
+            <div class="col-md-12 d-flex">
+                <div class="flex-grow-1 mb-md-0 mr-0 mr-lg-3 ml-0 ml-lg-4">
+                    <div class="loginformdiv">
+                        <h3 class="card-title">{{ 'HEADER_LOGIN'|translate }}</h3>
+                        <form [formGroup]="loginForm">
+                            <div *ngIf="loginForm.errors?.server" class="alert alert-sm alert-danger">
+                                {{ loginForm.errors.server|translate }}
+                            </div>
+                            <div class="form-group">
+                                <label for="signin-mobile">{{ 'INPUT_MOBILE_NUMBER_LABEL'|translate }}</label>
+                                <input (input)="fieldChange()"  id="signin-mobile" type="text" class="form-control"
+                                    [class.is-invalid]="loginForm.controls.phone|isInvalid" formControlName="phone"
+                                    minlength="10" maxlength="10" autocomplete="off" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))">
+                                <div class="invalid-feedback">
+                                    <div *ngIf="loginForm.controls.phone|hasError:'required'"> 
+                                        {{ 'ERROR_FORM_REQUIRED'|translate }}
+                                    </div>
+                                    <div *ngIf="loginForm.controls.phone.touched && loginForm.controls.phone|hasError:'minlength'">
+                                        {{'ERROR_MOBILE_LENGTH'|translate}}
+                                   </div>
+
+                                </div>
+                            </div>
+
+                            <div class="form-group" *ngIf="showOtpInput">
+                                <ng-otp-input  #ngOtpInput [config]="config" (onInputChange)="onOtpChange($event)"
+
+                                    class="otp mb-2" id="otp-values">
+                                </ng-otp-input>
+                               
+                            </div>
+                           
+                            <div class="form-group mb-0" *ngIf="!showOtpInput">
+                                <button
+                                    type="submit"
+                                    class="btn btn-primary mt-3"
+                                    [class.btn-loading]="loginInProgress"
+                                    (click)="generateOtp()"
+                                >
+                                {{ 'GENERATE_OTP_BUTTON'|translate }}
+                            </button>
+                            </div>
+
+                           
+
+                            <div class="form-group mb-0" *ngIf="showOtpInput">
+                                <button
+                                    type="submit"
+                                    class="btn btn-primary mt-3"
+                                    [class.btn-loading]="loginInProgress"
+                                    (click)="login()"
+                                >
+                                    {{ 'BUTTON_LOGIN'|translate }}
+                                </button>
+                            </div>
+
+							<div class="form-group loginlinks">
+                                <a routerLink="/account/register">{{ 'LINK_CREATE_ACCOUNT'|translate }}</a>
+							</div>
+                        </form>
+                    </div>
+                
+				
+				
+				</div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+<app-block-space layout="before-footer"></app-block-space>

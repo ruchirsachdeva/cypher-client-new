@@ -1,0 +1,77 @@
+<div class="block">
+    <div class="">
+        <div class="row">
+            <div class="col-md-12 d-flex">
+                <div class="flex-grow-1 mb-md-0 mr-0 mr-lg-3 ml-0 ml-lg-4">
+                    <div class="loginformdiv">
+                        <h3 class="card-title">{{ 'HEADER_REGISTER'|translate }}</h3>
+                        <form [formGroup]="registerForm">
+                            <div *ngIf="registerForm.errors?.server" class="alert alert-sm alert-danger">
+                                {{ registerForm.errors.server|translate }}
+                            </div>
+                            <!-- <div class="form-group">
+                                <label for="signup-name">{{ 'INPUT_NAME_LABEL'|translate }}</label>
+                                <input (input)="fieldChange()" id="signup-name" type="text" class="form-control"
+                                    [class.is-invalid]="registerForm.controls.name|isInvalid" formControlName="name"
+                                    autocomplete="off">
+                                <div class="invalid-feedback">
+                                    <div *ngIf="registerForm.controls.name|hasError:'required'">
+                                        {{ 'ERROR_FORM_REQUIRED'|translate }}
+                                    </div>
+                                </div>
+                            </div> -->
+
+
+                            <div class="form-group">
+                                <label for="signup-mobile">{{ 'INPUT_MOBILE_NUMBER_LABEL'|translate }}</label>
+                                <input (input)="fieldChange()" id="signup-mobile" type="text" class="form-control" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))"
+
+                                    [class.is-invalid]="registerForm.controls.phone|isInvalid" formControlName="phone"
+                                    minlength="10" maxlength="10" autocomplete="off">
+                                <div class="invalid-feedback">
+                                    <div *ngIf="registerForm.controls.phone|hasError:'required'">
+                                        {{ 'ERROR_FORM_REQUIRED'|translate }}
+                                    </div>
+
+                                    <div *ngIf="registerForm.controls.phone.touched && registerForm.controls.phone|hasError:'minlength'">
+                                         {{'ERROR_MOBILE_LENGTH'|translate}}
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                            <div class="form-group" *ngIf="showOtpInput">
+                                <ng-otp-input  #ngOtpInput [config]="config" (onInputChange)="onOtpChange($event)"
+
+                                    class="otp mb-2" id="otp-values">
+                                </ng-otp-input>
+                               
+                            </div>
+
+
+                            <div class="form-group mb-0" *ngIf="!showOtpInput">
+                                <button type="submit" class="btn btn-primary mt-3"
+                                    [class.btn-loading]="apiCallInprogress" (click)="generateOtp()">
+                                    {{ 'GENERATE_OTP_BUTTON'|translate }}
+                                </button>
+                            </div>
+
+                            <div class="form-group mb-0" *ngIf="showOtpInput">
+                                <button type="submit" class="btn btn-primary mt-3"
+                                    [class.btn-loading]="apiCallInprogress" (click)="verifyOtp()">
+                                    {{ 'VERIFY_OTP_BUTTON'|translate }}
+                                </button>
+                            </div>
+                            <div class="form-group loginlinks">
+                                <a routerLink="/account/login">{{ 'LINK_RETURN_LOGIN'|translate }}</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-block-space layout="before-footer"></app-block-space>
